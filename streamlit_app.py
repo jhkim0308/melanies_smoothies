@@ -24,8 +24,6 @@ st.write("The name on your Smoothie will be:", name_on_order)
 #st.write("Your favorite fruit is:", option)
 
 
-
-
 #session = get_active_session()
 # SniS에서 사용하기 위해 수정
 cnx = st.connection("snowflake")
@@ -63,3 +61,9 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
+
+      
+# New section to display smoothiefroot nutrition information
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
